@@ -43,6 +43,7 @@ def sign_in(request:HttpRequest):
 def logout (request:HttpRequest):
 
     logout(request)
+    messages.success(request, "logged out successfuly", "alert-success")
     return redirect("accounts:test_view")
 
     

@@ -1,0 +1,57 @@
+main
+{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("/static/images/accounts-bg.jpeg");
+}
+#signup-card
+{
+    align-items: center;
+    justify-content: center;
+    border: 1px solid beige;
+}
+.signup-title
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.signup-title #logo
+{
+    color: #6F4E37;
+    font-size: 100px;
+}
+.signup-title h1
+{
+    color: #6F4E37;
+}
+.btn-brown
+{
+    background-color: #6F4E37;
+    color: #fff;
+    border-color: #6F4E37;
+}
+
+.btn-brown:hover
+{
+    background-color: #4B3322;
+    border-color: #4B3322;
+    color: #fff;
+}
+
+/* --- Profile Page style --- */
+.profile-info
+{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    border: #4B3322 1px solid;
+}

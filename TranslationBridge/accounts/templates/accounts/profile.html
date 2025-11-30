@@ -4,4 +4,58 @@
 
 {% block content %}
 
+<div class="profile-info">
+    <div class="card shadow-lg p-4">
+        <h2 class="border-bottom pb-2 mb-4">PROFILE</h2>
+        
+        <div class="row">
+            <div class="col-lg-4 border-end">
+                <div class="text-center mb-4">
+                    <i class="fas fa-user-circle fa-5x text-secondary"></i> 
+                    <p class="mt-2 text-muted">Upload Picture</p>
+                </div>
+                
+                <ul class="list-group list-group-flush mb-4">
+                    <li class="list-group-item"><i class="fab fa-facebook me-2 text-primary"></i> Add Facebook</li>
+                    <li class="list-group-item"><i class="fab fa-twitter me-2 text-info"></i> Add Twitter</li>
+                    <li class="list-group-item"><i class="fab fa-instagram me-2 text-danger"></i> Add Instagram</li>
+                    <li class="list-group-item"><i class="fab fa-google-plus-g me-2 text-warning"></i> Add Google+</li>
+                </ul>
+            </div>
+            
+            <div class="col-lg-8 ps-lg-4">
+                
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Username:</label>
+                        <input type="text" class="form-control" value="Asenkrekmanov">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">E-mail:</label>
+                        <input type="email" class="form-control" value="azkrekmanov@gmail.com">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password:</label>
+                        <input type="password" class="form-control" value="bigbigworld123">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Repeat Password:</label>
+                        <input type="password" class="form-control" value="bigbigworld123">
+                    </div>
+                    
+                    <h5 class="mt-4">About Me:</h5>
+                    <textarea class="form-control mb-4" rows="3">I am Asen Krekmanov and I am dedicated UI/UX Designer from Sofia, Bulgaria.</textarea>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">Update Information</button>
+                    </div>
+                </form>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
 {% endblock %}

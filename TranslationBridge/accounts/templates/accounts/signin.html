@@ -4,9 +4,12 @@
 
 
 {% block content %}
-    <div class="container d-flex flex-column justify-content-center align-items-center">
+    <div class="container d-flex flex-column justify-content-center align-items-center card shadow rounded p-3 m-6 w-50" id="signup-card">
 
-            <h2>Sign In</h2>
+            <div class="signup-title">
+                <h1>Sign In</h1>
+            </div>
+            
 
             <form class="d-flex flex-column gap-3 w-50" action="{% url 'accounts:sign_in' %}" method="POST">
                 {% csrf_token %}
@@ -24,7 +27,7 @@
                 </div>
             
 
-                <button class="btn btn-primary w-100 py-2" type="submit">Sign In</button>
+                <button class="btn btn-brown w-100 py-2" type="submit">Sign In</button>
             </form>
     </div>
 {% endblock %}
