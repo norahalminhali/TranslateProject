@@ -14,6 +14,7 @@ class City(models.Model):
     country = models.ForeignKey( Country, on_delete= models.CASCADE)
 
 
+#Translator information model
 class Translator(models.Model):
     
     class LanguageChoices(models.TextChoices):
@@ -38,8 +39,9 @@ class Translator(models.Model):
     rating = models.SmallIntegerField(choices=RatingChoices.choices)
     created_at = models.DateTimeField(auto_now=True)
     #location - one to many relationship
-    country = models.ForeignKey( Country, on_delete=models.CASCADE )
+    city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True)
 
+#Users review 
 class Review(models.Model):
 
     name = models.CharField(max_length=1024)

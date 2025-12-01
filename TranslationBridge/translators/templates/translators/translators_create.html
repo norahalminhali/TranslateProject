@@ -1,0 +1,48 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+
+{% block title %} Create translators information page {% endblock %}
+
+{% block content %}
+
+<h1> Create Translator Information</h1>
+
+<div class="">
+    <div class="col-8">
+        <form class="d-flex flex-column gap-2" action="{% url 'translators:create_translator_view' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!--
+                Enter the name of translator
+            -->
+            
+            <!-- Location -->
+             <div class="form-group mb-3"></div>
+                <h3 class="m-0 p-0"> Select your location : </h3>
+                <label for="city_select">City :</label>
+                <select name="city" id="city_select" class="form-control" required>
+                    <option value=""> -- Choose City -- </option>
+                    {% for city in cities %}
+                        <option value="{{ city.id }}">{{ city.country.name }} : {{ city.name }}</option>
+                    {% endfor %}
+                </select>
+             </div>
+
+            <!-- languages -->
+             <h3> Select the languages you knows : </h3>
+             <div class="d-flex gap-2 align-items-center">
+                <h5 class="m-0 p-0">languages</h5>
+                {% for language in LanguageChoices %}
+                <input type="checkbox"  value="{{language.id}}"  id="check-{{language.id}}" class="form-check-input" name="languages" id="">
+                <label for="check-{{language.id}}">{{ language.1 }}</label>
+                {% endfor %}
+             </div>
+
+            <!-- experience -->
+             <h3> Write down a short description about your experience : </h3>
+             <textarea  class="form-control" name="experience" placeholder=" write here a short description about your experience" required></textarea>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
