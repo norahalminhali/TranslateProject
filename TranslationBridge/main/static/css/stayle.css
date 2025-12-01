@@ -126,7 +126,7 @@ html {
 /* Scroll Menu Styles */
 .scroll {
     position: absolute;
-    top: 300px;
+    top: 250px;
     right: 40px;
     z-index: 10;
 }
