@@ -5,10 +5,10 @@
 {% block title %} Create translators information page {% endblock %}
 
 {% block content %}
+<div class="d-flex align-items-left justify-content-center flex-column" id="translators-create-style">
+    <h1> Create Translator Information</h1>
 
-<h1> Create Translator Information</h1>
 
-<div class="">
     <div class="col-8">
         <form class="d-flex flex-column gap-2" action="{% url 'translators:create_translator_view' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}

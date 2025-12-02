@@ -48,3 +48,12 @@ def create_translator_view(request:HttpRequest):
     
 
     return render(request, "translators/translators_create.html", {"translator_form":translator_form, "RatingChoices":Translator.RatingChoices.choices, "cities":city, "languages":languages } )
+
+
+#All translator list
+def translator_list_view(request:HttpRequest):
+    translators = Translator.objects.all()
+    languages = Language.objects.all()
+    cities = City.objects.all()
+
+    

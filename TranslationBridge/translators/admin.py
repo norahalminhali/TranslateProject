@@ -12,6 +12,9 @@ class ReviewAdmin (admin.ModelAdmin):
     list_display = ("user", "translator", "rating")
     list_filter = ("translator", "rating")
 
+
 admin.site.register(Translator, TranslatorAdmin)
 admin.site.register(Review, ReviewAdmin)
+admin.site.register(City)
+admin.site.register(Country)
 admin.site.register(Language)

@@ -9,14 +9,23 @@ class Country(models.Model):
     name = models.CharField(max_length=200, unique= True)
     flag = models.ImageField(upload_to="images/")
 
+    def __str__(self):
+        return self.name
+
 class City(models.Model):
     name = models.CharField(max_length=200, unique= True)
     #one to many relationship
     country = models.ForeignKey( Country, on_delete= models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
 
 class Language(models.Model):
     name = models.CharField(max_length=50, unique= True )
+
+    def __str__(self):
+        return self.name
 
 
 #Translator information model
@@ -29,7 +38,7 @@ class Translator(models.Model):
         STAR4 = 4, "Four Stars"
         STAR5 = 5, "Five Stars"
 
-    user = models.ForeignKey(User, on_delete=models.PROTECT, default=1)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
     specialty = models.CharField(max_length=200)
     experience = models.TextField()
     rating = models.SmallIntegerField(choices=RatingChoices.choices)
@@ -41,14 +50,20 @@ class Translator(models.Model):
     #add languages
     languages = models.ManyToManyField(Language)
 
+    def __str__(self):
+        return self.user
+
 
 #Users review 
 class Review(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.SmallIntegerField()
     comment = models.TextField()
     created_at = models.DateTimeField( auto_now_add= True )
 
     #one to many relationship
     translator = models.ForeignKey( Translator, on_delete=models.CASCADE )
+
+    def __str__(self):
+        return f"{self.user.username} on {self.translator.user}"
