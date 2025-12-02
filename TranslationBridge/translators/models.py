@@ -38,10 +38,10 @@ class Translator(models.Model):
         STAR4 = 4, "Four Stars"
         STAR5 = 5, "Five Stars"
 
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    #user = models.ForeignKey(User, on_delete=models.PROTECT)
     specialty = models.CharField(max_length=200)
     experience = models.TextField()
-    rating = models.SmallIntegerField(choices=RatingChoices.choices)
+    rating = models.SmallIntegerField(choices=RatingChoices.choices, default=1)
     created_at = models.DateTimeField(auto_now=True)
     
     #location - one to many relationship

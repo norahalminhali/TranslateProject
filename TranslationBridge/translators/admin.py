@@ -4,7 +4,7 @@ from .models import Language, Country, City, Translator, Review
 # Register your models here.
 class TranslatorAdmin(admin.ModelAdmin):
 
-    list_display = ("user", "specialty", "rating")
+    list_display = ( "specialty", "rating")
     list_filter= ("rating",)
 
 class ReviewAdmin (admin.ModelAdmin):
