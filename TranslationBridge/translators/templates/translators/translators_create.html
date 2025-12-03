@@ -4,45 +4,121 @@
 
 {% block title %} Create translators information page {% endblock %}
 
+{% block style %} 
+
+<style>
+    main
+    {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url('/static/images/accounts-bg.jpeg');      
+        background-size: cover;
+        background-repeat: no-repeat;  
+    }
+    .create-translator-style
+    {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        padding-top: 100px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .create-translator-title
+    {
+        width: 100%;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .create-translator-title h1 , h5
+    {
+        color: #6F4E37;
+    }
+
+    h3
+    {
+        color: #b39077;
+    }
+
+    .create-translator-card
+    {
+        margin: 20px;
+        padding: 50px;
+        border-radius: 50px;
+        border: rgb(111, 78, 55) 1px solid;
+        box-shadow: rgba(111, 78, 55, 0.2) 0px 8px 24px;
+    }
+
+    .btn-brown
+    {
+        background-color: #6F4E37;
+        color: #fff;
+        border-color: #6F4E37;
+    }
+
+    .btn-brown:hover
+    {
+        background-color: #4B3322;
+        border-color: #4B3322;
+        color: #fff;
+    }
+</style>
+
+{% endblock %}
+
 {% block content %}
 
-<h1> Create Translator Information</h1>
-
-<div class="">
-    <div class="col-8">
-        <form class="d-flex flex-column gap-2" action="{% url 'translators:create_translator_view' %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <!--
-                Enter the name of translator
-            -->
-            
-            <!-- Location -->
-             <div class="form-group mb-3"></div>
-                <h3 class="m-0 p-0"> Select your location : </h3>
-                <label for="city_select">City :</label>
-                <select name="city" id="city_select" class="form-control" required>
-                    <option value=""> -- Choose City -- </option>
-                    {% for city in cities %}
-                        <option value="{{ city.id }}">{{ city.country.name }} : {{ city.name }}</option>
-                    {% endfor %}
-                </select>
-             </div>
-
-            <!-- languages -->
-             <h3> Select the languages you knows : </h3>
-             <div class="d-flex gap-2 align-items-center">
-                <h5 class="m-0 p-0">languages</h5>
-                {% for language in LanguageChoices %}
-                <input type="checkbox"  value="{{language.id}}"  id="check-{{language.id}}" class="form-check-input" name="languages" id="">
-                <label for="check-{{language.id}}">{{ language.1 }}</label>
-                {% endfor %}
-             </div>
-
-            <!-- experience -->
-             <h3> Write down a short description about your experience : </h3>
-             <textarea  class="form-control" name="experience" placeholder=" write here a short description about your experience" required></textarea>
-        </form>
+<div class="create-translator-style">
+    <div class="create-translator-title">
+        <h1> Create Translator Information</h1>
     </div>
-</div>
+    <div class="create-translator-card">
+
+        <div class="row d-flex justify-content-center">
+            <div class="col-8">
+                <form class="d-flex flex-column gap-2" action="{% url 'translators:create_translator_view' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <!-- Location -->
+                    <h3 class="m-0 p-0"> Select your location : </h3>
+                    <label for="city_select"> <h5>City</h5></label>
+                    <select name="city" id="city_select" class="form-control" required>
+                        <option value=""> -- Choose City -- </option>
+                        {% for city in cities %}
+                            <option value="{{ city.id }}">{{ city.country.name }} : {{ city.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <!-- languages -->
+                    <h3> Select the languages you knows : </h3>
+                    <div class="d-flex gap-2 align-items-center">
+                        <h5 class="m-0 p-0">languages</h5>
+                        {% for lang in languages %}
+                            <input type="checkbox"  value="{{lang.id}}"  id="check-{{lang.id}}" class="form-check-input" name="languages">
+                            <label for="check-{{lang.id}}">{{ lang.name }}</label>
+                        {% endfor %}
+                    </div>
+                <!-- experience -->
+                <h3> Write down a short description about your experience : </h3>
+                <textarea  class="form-control" name="experience" placeholder=" write here a short description about your experience" required></textarea>
+                <!-- specialty -->
+                <h3> Write down about your specialty : </h3>
+                <textarea  class="form-control" name="specialty" placeholder=" write here a short description about your experience" required></textarea>
+                <input type="submit" value="Add information" class="btn btn-brown mt-4" />                
+                </form>
+            </div>
+        </div>                
+    </div>
+
+
+
+
+</div>        
 
 {% endblock %}

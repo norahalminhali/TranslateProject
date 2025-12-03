@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 
 #import models
-from .models import Country, City, Translator, Review 
+from .models import Country, City, Translator, Review, Language
 
 #import form
 from .forms import TranslatorForm
@@ -33,17 +33,42 @@ def create_translator_view(request:HttpRequest):
     translator_form = TranslatorForm()
 
     city = City.objects.all()
+    languages = Language.objects.all()
 
     if request.method == "POST":
-
         translator_form = TranslatorForm(request.POST)
         if translator_form.is_valid():
             translator_form.save()
-
             messages.success(request, "Add Translator information successfully!", "alert-success")
-            return redirect('main:home_view')
+            return redirect('translators:translator_list_view') 
         else:
             print("not valid form", translator_form.errors)
-    
+             
+        #try:
+            #name = request.POST["name"]
+            #new_plant.countries.set(request.POST.getlist{"countries"})
+            #new_translators = Translator(city = request.POST["city"], languages = request.POST["languages"], experience = request.POST["experience"], specialty = request.POST["specialty"])
+           # new_translators.save()
+            #translators.languages.set(request.POST.getlist{"languages"})
 
-    return render(request, "translators/translators_create.html", {"translator_form":translator_form, "LanguageChoices":Translator.LanguageChoices.choices, "RatingChoices":Translator.RatingChoices.choices, "cities":city } )
+        #except:
+        #    print("not valid form")
+              
+
+    return render(request, "translators/translators_create.html", {"translator_form":translator_form , "RatingChoices":Translator.RatingChoices.choices, "cities":city, "languages":languages } )
+
+
+#All translator list
+def translator_list_view(request:HttpRequest):
+
+    translators = Translator.objects.all()
+    languages = Language.objects.all()
+    cities = City.objects.all()
+
+    page_number = request.GET.get("page",1)
+    paginator = Paginator(translators, 9)
+    translators_page =paginator.get_page(page_number)
+
+    return render(request, "translators/translators_list.html", { "translators": translators_page, "languages":languages, "cities": cities })
+
+    
