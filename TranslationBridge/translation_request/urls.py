@@ -4,6 +4,7 @@ from . import views
 app_name = "translation_request"
 
 urlpatterns = [
-    path("create/", views.Request_create_view, name="Request_create_view"),
-    
+    path("create/", views.request_create_view, name="request_create_view"),
+    path("list/", views.request_list_view, name="request_list_view"),
+    path('detail/<int:pk>/', views.request_detail_view, name='request_detail_view'),
 ]
