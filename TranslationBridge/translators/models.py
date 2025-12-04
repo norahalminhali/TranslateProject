@@ -52,7 +52,7 @@ class Translator(models.Model):
     languages = models.ManyToManyField(Language)
 
     def __str__(self):
-        return self.user
+        return self.name
 
 
 #Users review 

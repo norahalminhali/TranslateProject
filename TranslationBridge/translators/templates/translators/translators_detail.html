@@ -68,7 +68,7 @@
         <h3>Translator languages:</h3>
         <!-- using for loop-->
          {% for language in  translator.languages.all %} <!-- or using translator.language.id ?!-->
-            <p>{{ translator.language }}</p><!-- add translator languages here -->
+            <p>{{ language.name }}</p><!-- add translator languages here -->
          {% endfor %}
          
         <h3>Translator Rating:</h3>
