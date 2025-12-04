@@ -20,10 +20,16 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
-
+#Language model
 class Language(models.Model):
     name = models.CharField(max_length=50, unique= True )
 
+    def __str__(self):
+        return self.name
+ 
+#Specialty model   
+class specialty(models.Model):
+    name = models.CharField(max_length=50, unique= True )
     def __str__(self):
         return self.name
 
@@ -38,9 +44,9 @@ class Translator(models.Model):
         STAR4 = 4, "Four Stars"
         STAR5 = 5, "Five Stars"
 
+    #user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     image = models.ImageField(upload_to="images/", default="images/default.jpg")
-    specialty = models.CharField(max_length=200)
     experience = models.TextField()
     rating = models.SmallIntegerField(choices=RatingChoices.choices, default=1)
     created_at = models.DateTimeField(auto_now=True)
@@ -50,6 +56,9 @@ class Translator(models.Model):
 
     #add languages
     languages = models.ManyToManyField(Language)
+
+    #add specialties
+    specialties = models.ManyToManyField(specialty)
 
     def __str__(self):
         return self.name

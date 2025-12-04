@@ -66,7 +66,7 @@ def translator_list_view(request:HttpRequest):
     cities = City.objects.all()
 
     page_number = request.GET.get("page",1)
-    paginator = Paginator(translators, 9)
+    paginator = Paginator(translators, 6)
     translators_page =paginator.get_page(page_number)
 
     context = { "translators": translators_page, "languages": languages, "cities":cities }

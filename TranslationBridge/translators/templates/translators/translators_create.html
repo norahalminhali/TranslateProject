@@ -10,23 +10,25 @@
     main
     {
         width: 100%;
-        height: 100vh;
+        height: fit-content;
         display: flex;
         align-items: center;
         justify-content: center;
-        background-image: url('/static/images/accounts-bg.jpeg');      
+        background-image: url('/static/images/back.jpg');      
         background-size: cover;
         background-repeat: no-repeat;  
     }
     .create-translator-style
     {
         width: 100%;
-        height: 100vh;
+        height: fit-content;
         display: flex;
         padding-top: 100px;
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        padding-top: 120px;
+        padding-bottom: 120px;
     }
 
     .create-translator-title
@@ -53,7 +55,8 @@
         margin: 20px;
         padding: 50px;
         border-radius: 50px;
-        border: rgb(111, 78, 55) 1px solid;
+        background-color: rgb(218, 217, 217);
+        border: gray 1px solid;
         box-shadow: rgba(111, 78, 55, 0.2) 0px 8px 24px;
     }
 
@@ -86,11 +89,15 @@
             <div class="col-8">
                 <form class="d-flex flex-column gap-2" action="{% url 'translators:create_translator_view' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                   
+                                       
                     <!-- Translator name / nickname -->
                      <h3 class="m-0 p-0"> Enter Your Nickname</h3>
                     <input type="text" placeholder="Your Nickkname is .." value="{{ translator.name|default:'' }}"  name="name" class="form-control" required minlength="1" maxlength="512"/>
                    
+                    <!-- Translator image -->
+                    <h3> Upload the image : </h3>
+                    <input type="file" name="image" class="form-control" required accept="image/*"/>
+
                     <!-- Location -->
                     <h3 class="m-0 p-0"> Select your location : </h3>
                     <label for="city_select"> <h5>City</h5></label>
@@ -100,6 +107,7 @@
                             <option value="{{ city.id }}">{{ city.country.name }} : {{ city.name }}</option>
                         {% endfor %}
                     </select>
+                    
                     <!-- languages -->
                     <h3> Select the languages you knows : </h3>
                     <div class="d-flex gap-2 align-items-center">
@@ -109,13 +117,22 @@
                             <label for="check-{{lang.id}}">{{ lang.name }}</label>
                         {% endfor %}
                     </div>
-                <!-- experience -->
-                <h3> Write down a short description about your experience : </h3>
-                <textarea  class="form-control" name="experience" placeholder=" write here a short description about your experience" required></textarea>
-                <!-- specialty -->
-                <h3> Write down about your specialty : </h3>
-                <textarea  class="form-control" name="specialty" placeholder=" write here a about your specialty" required></textarea>
-                <input type="submit" value="Add information" class="btn btn-brown mt-4" />                
+                
+                    <!-- experience -->
+                    <h3> Write down a short description about your experience : </h3>
+                    <textarea  class="form-control" name="experience" placeholder=" write here a short description about your experience" required></textarea>
+                
+                    <!-- specialty -->
+                    <h3 class="m-0 p-0"> Select down your specialty : </h3>
+                    <label for="specialty_select"> <h5>Specialty</h5></label>
+                    <select name="specialties" id="specialty_select" class="form-control" required>
+                        <option value=""> -- Choose specialty -- </option>
+                        {% for specialty in specialties %}
+                            <option value="{{ specialty.id }}"> {{ specialty.name }}</option>
+                        {% endfor %}
+                    </select>
+                
+                    <input type="submit" value="Add information" class="btn btn-brown mt-4" />                
                 </form>
             </div>
         </div>                

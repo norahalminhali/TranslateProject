@@ -5,4 +5,4 @@ from translators.models import Translator
 class TranslatorForm(forms.ModelForm):
     class Meta:
         model = Translator
-        fields = ["name", "image","specialty", "experience", "city", "languages"]
+        fields = ["name", "image","specialties", "experience", "city", "languages"]

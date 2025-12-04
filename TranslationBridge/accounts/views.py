@@ -53,7 +53,7 @@ def logout (request:HttpRequest):
     logout(request)
     messages.success(request, "logged out successfuly", "alert-warning")
 
-    return redirect(request.GET.get("next","/"))
+    return redirect('main:home_view')
 
 
 #Profile view
