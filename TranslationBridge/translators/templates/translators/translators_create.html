@@ -86,8 +86,11 @@
             <div class="col-8">
                 <form class="d-flex flex-column gap-2" action="{% url 'translators:create_translator_view' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
+                   
                     <!-- Translator name / nickname -->
-                    <textarea  class="form-control" name="name" placeholder="write your nickname here" required></textarea>
+                     <h3 class="m-0 p-0"> Enter Your Nickname</h3>
+                    <input type="text" placeholder="Your Nickkname is .." value="{{ translator.name|default:'' }}"  name="name" class="form-control" required minlength="1" maxlength="512"/>
+                   
                     <!-- Location -->
                     <h3 class="m-0 p-0"> Select your location : </h3>
                     <label for="city_select"> <h5>City</h5></label>

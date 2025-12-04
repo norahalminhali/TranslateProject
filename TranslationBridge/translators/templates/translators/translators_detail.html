@@ -4,8 +4,94 @@
 
 {% block title %} Create translators detail information page {% endblock %}
 
-{% block content %}
+{% block style %}
+<style>
+    main
+    {
+        width: 100%;
+        height: fit-content;
+        gap: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        flex-direction: column;
+        background-image: url('/static/images/detail-bg.jpg');
+    }
+    .detail-section
+    {
+        margin: 80px;
+        padding: 100px;
+        width: 1000px;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        gap: 50px;
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    }
+    .detail-section .translator-img
+    {
+        width: 350px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .detail-section .translator-img img
+     {
+        position: absolute;
+        height: fit-content;
+        width: 350px;
+     }
+    .detail-section .translator-detail-content
+    {
+        width: 550px;
+        height: fit-content;
+        display: flex;
+        align-items: left;
+        justify-content: center;
+        flex-direction: column;
+    }
+</style>
+{% endblock %}
 
+{% block content %}
+<section class="detail-section">
+    <div class="translator-detail-content">
+        <h3>Translator name:</h3>
+        <p>{{ translator.name }}</p><!-- add translator name here -->
+        <h3>Translator specialty:</h3>
+        <p>{{ translator.specialty }}</p><!-- add translator specialty here -->
+        <h3>Translator languages:</h3>
+        <!-- using for loop-->
+         {% for language in  translator.languages.all %} <!-- or using translator.language.id ?!-->
+            <p>{{ translator.language }}</p><!-- add translator languages here -->
+         {% endfor %}
+         
+        <h3>Translator Rating:</h3>
+        <p>{{ translator.get_rating_display }}</p>
+
+        <h3>Translator experience:</h3>
+        <p>{{ translator.experience }}</p><!-- add translator specialty here -->
+        <h3>Translator location:</h3>
+        <!-- the user can click on the city then the location page turn on and shows the other translators in the same city -->
+        <p>{{ translator.city.country.name }} : {{ translator.city.name  }}</p><!-- add translator location of the city live in here -->
+        
+        <!-- Don't forgit add contact information also {email address,phone number}-->
+        
+        <!-- the link shows just for company users -->
+        <a href="{% url 'translators:create_translator_view' %}">Add request</a>
+
+        <!-- the link shows just for translator user have the same user id -->
+        <a href="{% url 'translators:create_translator_view' %}">Update information</a>
+    </div>   
+    <div class="translator-img">
+        <img src="/static/images/translator-img.jpg" alt="">
+    </div> 
+</section>
 
 
 {% endblock %}

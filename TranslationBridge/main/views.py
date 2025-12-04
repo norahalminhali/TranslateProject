@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 from companies.models import Company
+from translators.models import Translator
 
 #for messages notifications
 from django.contrib import messages
@@ -9,10 +10,13 @@ from main.models import Contact
 
 # Create your views here.
 def home_view(request: HttpRequest):
-    
+
+    best_translators_filter = Translator.objects.filter( rating__gte = 1).order_by('-rating')
+    translators = best_translators_filter[:3]
+
     companies = Company.objects.all()[:3]
 
-    return render(request, "main/home.html", {"companies": companies})
+    return render(request, "main/home.html", {"companies": companies, "translators":translators})
 
 
 #Contact view

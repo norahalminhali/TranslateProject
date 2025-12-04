@@ -4,8 +4,188 @@
 
 {% block title %} Show translators list page {% endblock %}
 
+{% block style %}
+
+<style>
+    body {
+        z-index: -1;
+        width: 100%;
+        height: 100vh;
+        background-image: url('/static/images/row-bg.jpg'); 
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; /* عشان تتحرك الصفحة والصورة تبقى ثابتة */
+    }
+    section
+    {
+        width: 100%;
+        height: fit-content;
+        padding-top: 120px;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        background-color: #0000006d;        
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto auto auto;
+        gap: 80px;
+    }
+    .container
+    {
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        gap: 80px;
+        flex-wrap: wrap;
+    }
+    .container .card
+    {
+        position: relative;
+        width: 300px;
+        height: 400px;
+        background: #ffffff86;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .container .card .content
+    {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 25px;
+        gap: 10px;
+        transition-delay: 0s;
+        transition: 0.5s;
+        opacity: 0;
+    }
+    .container .card:hover .content
+    {
+        opacity: 1;
+        transition-delay: 0.5s;
+    }
+    .container .card .content h2
+    {
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        color: #22255f;
+    }
+    .container .card .content p
+    {
+        text-align: center;
+        color: #fff;
+    }
+    .container .card .content a
+    {
+        color: #fff;
+        background-color: #22255f;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.em;
+    }
+    .container .card .content a:hover
+    {
+        background-color: #fff;
+        color: #454776;
+    }
+    .container .card .imgBx, 
+    .container .card .textBx
+    {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s;
+    }
+    .container .card .imgBx
+    {
+        background: #fff;
+        height: 120px;
+        z-index: 1;
+        transform-origin: bottom;
+    }
+    .container .card:hover .imgBx
+    {
+        transform: translateY(-100%) rotateX(90deg);
+    }
+    .container .card .textBx
+    {
+        height: 280px;
+        background: #b1b1c0;
+        border-top: 8px solid #22255f;
+        transform-origin: top;
+        transition-delay: 0.5s;
+        align-items: flex-end;
+        overflow: hidden;
+    }
+    .container .card:hover .textBx
+    {
+        transform: translateY(100%) rotateX(90deg);
+    }
+    .container .card .textBx h5
+    {
+        color: #222;
+        font-size: 1.25;
+        letter-spacing: 0.15em;
+        font-weight: 200;
+        text-transform: uppercase;
+        background: #fff;
+        padding: 5px 25px;
+        box-shadow: 0 0 0 8px #22255f;
+    }
+    .container .card .imgBx::before
+    {
+        content: '';
+        position: absolute;
+        bottom: -70px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 144px;
+        height: 74px;
+        background: #fff;
+        border-bottom-left-radius: 88px;
+        border-bottom-right-radius: 88px;
+        z-index: 1;
+    }
+    .container .card .imgBx img 
+    {
+        position: relative;
+        top: 50px;
+        z-index: 1;
+        font-size: 100;
+        height: 150px;
+        width: 135px;
+        border-radius: 50%;
+    }
+
+    .container .card .textBx::before
+    {
+        content: '';
+        position: absolute;
+        top: -8px;
+        width: 160px;
+        height: 80px;
+        background: #22255f;
+        border-bottom-left-radius: 80px;
+        border-bottom-right-radius: 80px;
+    }
+</style>
+
+{% endblock %}
+
 {% block content %}
+<section>
 
     {% include 'translators/translators_include_list.html' %}
 
+</section>
+    
 {% endblock %}

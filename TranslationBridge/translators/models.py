@@ -38,8 +38,8 @@ class Translator(models.Model):
         STAR4 = 4, "Four Stars"
         STAR5 = 5, "Five Stars"
 
-    #user = models.ForeignKey(User, on_delete=models.PROTECT)
     name = models.CharField(max_length=200)
+    image = models.ImageField(upload_to="images/", default="images/default.jpg")
     specialty = models.CharField(max_length=200)
     experience = models.TextField()
     rating = models.SmallIntegerField(choices=RatingChoices.choices, default=1)

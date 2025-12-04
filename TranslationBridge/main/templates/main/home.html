@@ -91,6 +91,43 @@
 
 </section>
 
+<!-- Best translators -->
+    <a href="{% url 'translators:translator_list_view' %}" class="text-decoration-none fw-semibold" >
+        <div  class="d-flex justify-content-between align-items-center mb-3 ms-4">
+        <h2 class="m-0 p-0 fw-bold">Best Translators</h2>
+            <a href="{% url 'translators:translator_list_view' %}"  id="forward-link" class="text-decoration-none fw-semibold" style="color: #001f4d; margin-right: 30px;">
+                More 
+                <span class="material-symbols-outlined text-fxl"> arrow_forward</span>
+            </a>        
+        </div>
+    </a>
+    <div class="best-translators">
+        {% for translator in translators %}
+            <div class="container">
+                <div class="card">
+                    <div class="imgBx">
+                        <span class="material-symbols-outlined">
+                            account_circle
+                        </span>
+                    <!--
+                        <img src="/static/images/translator-info-icon.png" alt="">
+                    -->  
+                    </div>
+                    <div class="content">
+                        <h2>{{translator.name}}</h2>
+                        <div class="textBx">
+                            <h5>{{translator.specialty}}</h5>
+                        </div>
+                        <p>{{translator.experience | truncatewords:50}}</p>
+                        <a href="{% url 'translators:translator_detail_view' translator.id %}">Read More</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}    
+    </div>
+
+
+
 
   <!-- featured companies -->
 <div class="d-flex justify-content-between align-items-center mb-3 ms-4">

@@ -78,4 +78,4 @@ def translator_detail_view(request:HttpRequest, translators_id:int):
 
     translator = Translator.objects.get(pk=translators_id)
 
-    return render(request, 'translators/translators_detail.html',{ "translator" : translator  })
+    return render(request, 'translators/translators_detail.html',{ "translator" : translator })
