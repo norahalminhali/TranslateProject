@@ -3,7 +3,6 @@ from django.db import models
 
 # Create your models here.
 
- 
 class Country(models.Model):
     name = models.CharField(max_length=100)
     flag = models.ImageField(upload_to="images/", null=True, blank=True)
@@ -35,17 +34,20 @@ class TranslatorAccreditation(models.Model):
     month = models.CharField(max_length=20)
     
 class Company(models.Model):
-   
+        
     name = models.CharField(max_length=200, unique=True)
     description = models.TextField(blank=True, null=True)
     
 
     country = models.ForeignKey(Country, on_delete=models.CASCADE, null=True, blank=True)
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True, blank=True)
-
+    
     languages = models.ManyToManyField(Language, blank=True)
     
-
+    class CompanyTypeChoices(models.TextChoices):
+        GOVERNMENT = 'government', 'Government'
+        PRIVATE = 'private', 'Private'
+        
 
     class RatingChoices(models.IntegerChoices):
         STAR1 = 1, '⭐'

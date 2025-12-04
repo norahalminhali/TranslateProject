@@ -1,5 +1,5 @@
 from django.db import models
-from companies.models import Company, Language
+from companies.models import Language
 
 # Create your models here.
 
@@ -10,13 +10,14 @@ class TranslationRequest(models.Model):
         INSTANT = "instant", "Instant Translation"   # ترجمة فورية
         HIRE = "hire", "Hire a Translator"           # طلب مترجم
 
-    # -------- الحقول المشتركة --------
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    class CompnyTypeChoices(models.TextChoices):
+        GOVERNMENT = 'government', 'Government'
+        PRIVATE = 'private', 'Private'    
 
-    request_type = models.CharField(
-        max_length=20,
-        choices=RequestTypeChoices.choices
-    )
+    # -------- الحقول المشتركة --------
+    company_name = models.CharField(max_length=200)
+    company_type = models.CharField(max_length=20, choices=CompnyTypeChoices.choices)
+    request_type = models.CharField(max_length=20, choices=RequestTypeChoices.choices)
 
     # -------- معلومات عامة --------
     description = models.TextField(null=True, blank=True)
