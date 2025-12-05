@@ -102,10 +102,11 @@
               <span class="info-value">{{ translation_request.duration_days }}</span>
             </div>
           </div>
-          <div class="text-center mt-4">
-            {% if request.user.is_authenticated and request.user == translation_request.user %} <!--اعدل علئ الشرط بعدين -->
-              <a href="{% url 'translation_request:request_update_view' translation_request.pk %}" class="btn btn-warning px-4 py-2 fw-bold" style="font-size:1.1rem; letter-spacing:1px;">تعديل الطلب</a>
-            {% endif %}
+          <div class="text-center mt-4 g-3 ">
+             <!--اعدل علئ الشرط بعدين -->
+              <a href="{% url 'translation_request:request_update_view' translation_request.pk %}" class="btn btn-light px-4 py-2 fw-bold" style="font-size:1.1rem; letter-spacing:1px;"> Update Request ..</a>
+              <a href="{% url 'translation_request:request_delete_view' translation_request.pk %}" class="btn btn-danger px-4 py-2 fw-bold" style="font-size:1.1rem; letter-spacing:1px;"> Delete Request ..</a>
+            
           </div>
         </div>
       </div>
@@ -134,4 +135,8 @@
     </div>
   </div>
 {% endif %}
+
+
+
+
 {% endblock content %}

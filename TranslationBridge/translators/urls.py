@@ -6,5 +6,6 @@ app_name = "translators"
 urlpatterns = [
     path("create-new/", views.create_translator_view, name= "create_translator_view"),
     path("all-list/", views.translator_list_view, name="translator_list_view"),
-    path("detail/<translators_id>", views.translator_detail_view, name="translator_detail_view")
+    path("detail/<translators_id>", views.translator_detail_view, name="translator_detail_view"),
+    path("review/<int:translator_id>/", views.review_view, name="review_view"),
 ]

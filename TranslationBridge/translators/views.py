@@ -79,3 +79,25 @@ def translator_detail_view(request:HttpRequest, translators_id:int):
     translator = Translator.objects.get(pk=translators_id)
 
     return render(request, 'translators/translators_detail.html',{ "translator" : translator })
+
+
+def review_view(request:HttpRequest, translator_id:int):
+
+    if not request.user.is_authenticated:
+        messages.error(request, "You must be logged in to add a review", "alert-danger")
+        return redirect("accounts:sign_in")
+
+    if request.method == "POST":
+        translator_object = Translator.objects.get(pk=translator_id)
+        new_review = Review(
+            translator=translator_object,
+            user=request.user,
+            rating=request.POST.get("rating", 5),
+            comment=request.POST.get("comment", "")
+        )
+        new_review.save()
+        messages.success(request, "Review added successfully!", "alert-success")
+
+
+    return redirect("translators:translator_detail_view", translators_id=translator_id)
+ 

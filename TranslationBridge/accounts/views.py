@@ -60,7 +60,9 @@ def logout (request:HttpRequest):
 def profile_view(request:HttpRequest):
 
     try:
-        user = User.objects.get(username=request.user.username)    
+        user = User.objects.get(username=request.user.username)
+
+        
     except :
         return render(request, "accounts/404.html")
 

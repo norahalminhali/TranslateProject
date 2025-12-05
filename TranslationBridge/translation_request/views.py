@@ -54,6 +54,7 @@ def request_detail_view(request: HttpRequest, pk: int):
 
 def request_update_view(request: HttpRequest, pk: int):
     translation_request = TranslationRequest.objects.get(pk=pk)
+
     if request.method == "POST":
         form = TranslationRequestForm(request.POST, request.FILES, instance=translation_request)
         if form.is_valid():
@@ -65,5 +66,10 @@ def request_update_view(request: HttpRequest, pk: int):
     else:
         form = TranslationRequestForm(instance=translation_request)
     return render(request, "translation_request/request_update.html", {"form": form, "translation_request": translation_request})
+
+
 def request_delete_view(request: HttpRequest, pk: int):
-    pass
+    translation_request = TranslationRequest.objects.get(pk=pk)
+    translation_request.delete()
+    messages.success(request, "Request deleted successfully!", "alert-success")
+    return redirect('translation_request:request_list_view')

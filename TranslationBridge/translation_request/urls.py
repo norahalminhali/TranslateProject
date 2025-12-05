@@ -8,4 +8,5 @@ urlpatterns = [
     path("list/", views.request_list_view, name="request_list_view"),
     path('detail/<int:pk>/', views.request_detail_view, name='request_detail_view'),
     path('update/<int:pk>/', views.request_update_view, name='request_update_view'),
+    path('delete/<int:pk>/', views.request_delete_view, name='request_delete_view'),
 ]
