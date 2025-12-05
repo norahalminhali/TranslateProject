@@ -11,15 +11,15 @@ class TranslationRequestForm(forms.ModelForm):
             'company_type',
             'request_type',
             'description',
+            'cost',
+            'location',
             'language',
             'specialty',
             'file',
             'duration_days',
-            'translator_name',
-            'translator_specialty',
-            'translator_start_date',
-            'translator_duration_days',
-            'translator_language',
+            'start_date',
+            'city',
+   
         ]
 
         widgets = {

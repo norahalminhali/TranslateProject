@@ -47,9 +47,9 @@
 
                 <li class="nav-item">
                     {% if request.user.is_authenticated %}
-              
                         <div class="d-flex gap-1 align-items-center justify-content-center">
-                        <a href="{% url 'accounts:profile_view' %}">welcome {{ request.user.username }}</a>
+                            <img src="{{request.user.profile.avatar.url}}" alt="Avatar" style="width:30px; height:30px; border-radius:50%;">
+                            <a href="{% url 'accounts:profile_view' %}">welcome {{ request.user.username }}</a>
                             <a href="{% url 'accounts:log_out' %}" class="nav-link px-3 rounded-pill" > Logout </a>
 
 

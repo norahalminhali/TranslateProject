@@ -32,11 +32,11 @@ class TranslationRequest(models.Model):
     duration_days = models.CharField(max_length=50, null=True, blank=True)
 
     # -------- طلب مترجم --------
-    translator_name = models.CharField(max_length=100, null=True, blank=True)
-    translator_specialty = models.CharField(max_length=100, null=True, blank=True)
-    translator_start_date = models.DateField(null=True, blank=True)
-    translator_duration_days = models.CharField(max_length=50, null=True, blank=True)
-    translator_language = models.ManyToManyField(Language, related_name="translator_languages", blank=True)
+    city = models.CharField(max_length=100, null=True, blank=True)
+    specialty = models.CharField(max_length=100, null=True, blank=True)
+    start_date = models.DateField(null=True, blank=True)
+    duration_days = models.CharField(max_length=50, null=True, blank=True)
+    language = models.ForeignKey(Language, on_delete=models.PROTECT, null=True, blank=True)
 
     def __str__(self):
         return f"{self.company_name} - {self.request_type}"
