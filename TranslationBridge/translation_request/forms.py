@@ -19,6 +19,7 @@ class TranslationRequestForm(forms.ModelForm):
             'duration_days',
             'start_date',
             'city',
+            'status'
    
         ]
 

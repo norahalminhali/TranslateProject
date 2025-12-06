@@ -1,7 +1,5 @@
-
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpRequest
-from translators.models import Translator
 from .forms import TranslationRequestForm
 from companies.models import Language, City 
 from translators.models import specialty, Translator, City, Language
@@ -115,3 +113,15 @@ def request_matched_view(request: HttpRequest, request_id: int):
         "translation_request": translation_request,
         "matched_translators": matched_translators
     })
+
+def assign_translator(request, request_id, translator_id):
+
+    translation_request = get_object_or_404(TranslationRequest, id=request_id)
+    translator = get_object_or_404(Translator, id=translator_id)
+
+    # تعيين المترجم للطلب وتغيير الحالة
+    translation_request.translator = translator
+    translation_request.status = TranslationRequest.StatusChoices.ASSIGNED
+    translation_request.save()
+    messages.success(request, "Translator assigned successfully!", "alert-success")
+    return redirect('translation_request:request_list_view')

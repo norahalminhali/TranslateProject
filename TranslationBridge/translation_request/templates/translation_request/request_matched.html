@@ -38,7 +38,13 @@
                             {% endfor %}
                         </p>
 
-                        <a href="#" class="btn btn-dark mt-2 w-100">Select Translator</a>
+                        <a href="{% url 'translators:translator_detail_view' translator.id %}" class="btn btn-dark mt-2 w-100">Select Translator</a>
+                        <form method="post" action="{% url 'translation_request:assign_translator' translation_request.id translator.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-primary mt-2 w-100 d-flex align-items-center justify-content-center" style="font-weight:bold; font-size:1.1rem;">
+                                <i class="bi bi-plus-circle me-2" style="font-size:1.4rem;"></i> Add This Translator
+                            </button>
+                        </form>
 
                     </div>
                 </div>
